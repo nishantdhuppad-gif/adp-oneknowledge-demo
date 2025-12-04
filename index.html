@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADP OneKnowledge - AI-Powered Knowledge Assistant</title>
+    <title>ADP OneKnowledge - AI-Powered Knowledge System</title>
     <style>
         * {
             margin: 0;
@@ -13,99 +13,396 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
         }
 
-        .container {
+        /* ADP Red and White Theme */
+        :root {
+            --adp-red: #D32F2F;
+            --adp-dark-red: #B71C1C;
+            --adp-light-red: #EF5350;
+            --adp-white: #FFFFFF;
+            --adp-gray: #F5F5F5;
+            --adp-dark-gray: #424242;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--adp-red);
+            color: white;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo {
+        .nav-logo {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 15px;
+            padding: 20px 0;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
+        .adp-logo {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 5px;
             font-weight: bold;
+            font-size: 28px;
+            color: var(--adp-red);
+            letter-spacing: 2px;
         }
 
-        h1 {
-            color: #2d3748;
-            font-size: 32px;
+        .nav-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: var(--adp-dark-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--adp-red) 0%, var(--adp-dark-red) 100%);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 30px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
             margin-bottom: 10px;
         }
 
-        .tagline {
-            color: #718096;
+        .stat-label {
             font-size: 16px;
+            opacity: 0.9;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 30px;
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
         }
 
-        .sidebar {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            height: fit-content;
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
-        .sidebar h3 {
-            color: #2d3748;
-            margin-bottom: 20px;
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--adp-red);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
             font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* System Architecture */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .arch-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--adp-red);
+            transition: transform 0.3s;
+        }
+
+        .arch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(211,47,47,0.2);
+        }
+
+        .arch-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--adp-red), var(--adp-light-red));
+            border-radius: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
         }
 
-        .api-source {
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .arch-card h3 {
+            color: var(--adp-red);
+            font-size: 22px;
+            margin-bottom: 15px;
         }
 
-        .api-source:hover {
-            background: #edf2f7;
-            transform: translateX(5px);
+        .arch-card p {
+            color: #666;
+            line-height: 1.6;
         }
 
-        .api-source.active {
-            background: #667eea;
+        /* API Sources Visual */
+        .api-visual {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .api-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .api-source-box {
+            background: var(--adp-gray);
+            border: 3px solid var(--adp-red);
+            border-radius: 12px;
+            padding: 25px;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .api-source-box:hover {
+            background: var(--adp-red);
             color: white;
+            transform: scale(1.05);
+        }
+
+        .api-source-box::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: var(--adp-red);
+        }
+
+        .api-source-box:last-child::after {
+            content: '';
+        }
+
+        .source-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            border: 2px solid var(--adp-red);
         }
 
         .source-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .source-count {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .central-ai {
+            background: linear-gradient(135deg, var(--adp-red), var(--adp-dark-red));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(211,47,47,0.3);
+        }
+
+        .central-ai-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .central-ai h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Data Flow Visualization */
+        .flow-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .flow-step {
+            min-width: 180px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step-circle {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border: 4px solid var(--adp-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            transition: all 0.3s;
+        }
+
+        .flow-step.active .flow-step-circle {
+            background: var(--adp-red);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .flow-step-title {
+            font-weight: 600;
+            color: var(--adp-red);
+            margin-bottom: 8px;
+        }
+
+        .flow-step-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .flow-arrow {
+            font-size: 30px;
+            color: var(--adp-red);
+            margin: 0 10px;
+        }
+
+        /* Interactive Demo */
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .demo-sidebar {
+            background: var(--adp-gray);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--adp-red);
+        }
+
+        .demo-sidebar h4 {
+            color: var(--adp-red);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .source-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--adp-red);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .source-item:hover {
+            background: var(--adp-red);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .source-item-name {
             font-weight: 600;
             margin-bottom: 5px;
             display: flex;
@@ -113,17 +410,11 @@
             gap: 8px;
         }
 
-        .source-status {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #48bb78;
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
             border-radius: 50%;
-            display: inline-block;
             animation: pulse 2s infinite;
         }
 
@@ -132,45 +423,41 @@
             50% { opacity: 0.5; }
         }
 
-        .chat-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .source-item-info {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .chat-interface {
+            background: var(--adp-gray);
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
-            height: 700px;
+            height: 600px;
         }
 
         .chat-header {
-            padding: 20px 25px;
-            border-bottom: 2px solid #e2e8f0;
+            background: var(--adp-red);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .chat-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        .api-indicator {
+        .chat-status {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
-            color: #48bb78;
-            background: #f0fff4;
-            padding: 8px 15px;
-            border-radius: 20px;
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 25px;
-            background: #f7fafc;
+            background: white;
         }
 
         .message {
@@ -199,527 +486,723 @@
             justify-content: flex-start;
         }
 
-        .message-content {
+        .message-bubble {
             max-width: 70%;
             padding: 15px 20px;
             border-radius: 15px;
             line-height: 1.6;
         }
 
-        .message.user .message-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .message.user .message-bubble {
+            background: var(--adp-red);
             color: white;
             border-bottom-right-radius: 5px;
         }
 
-        .message.assistant .message-content {
-            background: white;
-            color: #2d3748;
+        .message.assistant .message-bubble {
+            background: var(--adp-gray);
+            color: #333;
             border-bottom-left-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .source-tag {
+        .message-source {
             display: inline-block;
-            background: #edf2f7;
-            color: #667eea;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            margin-top: 8px;
-            margin-right: 5px;
-        }
-
-        .message.assistant .source-tag {
-            background: #f0f4ff;
-        }
-
-        .chat-input-container {
-            padding: 20px 25px;
-            border-top: 2px solid #e2e8f0;
             background: white;
-            border-radius: 0 0 15px 15px;
+            color: var(--adp-red);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            margin-top: 10px;
+            margin-right: 5px;
+            border: 1px solid var(--adp-red);
         }
 
-        .input-wrapper {
+        .chat-input-area {
+            padding: 20px;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            border-top: 2px solid var(--adp-gray);
+        }
+
+        .input-group {
             display: flex;
             gap: 12px;
-            align-items: center;
         }
 
         .chat-input {
             flex: 1;
             padding: 15px 20px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--adp-gray);
             border-radius: 25px;
             font-size: 15px;
             outline: none;
-            transition: all 0.3s ease;
+            transition: border 0.3s;
         }
 
         .chat-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--adp-red);
         }
 
-        .send-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .send-button {
+            background: var(--adp-red);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 25px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .send-btn:hover {
+        .send-button:hover {
+            background: var(--adp-dark-red);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(211,47,47,0.3);
         }
 
-        .send-btn:active {
-            transform: translateY(0);
-        }
-
-        .quick-actions {
+        .quick-queries {
             display: flex;
             gap: 10px;
             margin-top: 12px;
             flex-wrap: wrap;
         }
 
-        .quick-action {
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
+        .quick-query {
+            background: var(--adp-gray);
+            border: 1px solid var(--adp-red);
+            color: var(--adp-red);
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .quick-action:hover {
-            background: #667eea;
+        .quick-query:hover {
+            background: var(--adp-red);
             color: white;
-            border-color: #667eea;
         }
 
-        .typing-indicator {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            padding: 15px 20px;
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
             background: white;
-            border-radius: 15px;
-            width: fit-content;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
         }
 
-        .typing-indicator.active {
-            display: flex;
+        .benefit-card:hover {
+            transform: translateY(-5px);
         }
 
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #cbd5e0;
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--adp-red), var(--adp-light-red));
             border-radius: 50%;
-            animation: typing 1.4s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: white;
         }
 
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .api-flow {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .api-flow h3 {
-            color: #2d3748;
-            margin-bottom: 20px;
+        .benefit-card h3 {
+            color: var(--adp-red);
+            margin-bottom: 12px;
             font-size: 20px;
         }
 
-        .flow-diagram {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            overflow-x: auto;
-            padding: 20px 0;
-        }
-
-        .flow-step {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 12px;
-            min-width: 180px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-            position: relative;
-        }
-
-        .flow-step.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #667eea;
-        }
-
-        .flow-arrow {
-            font-size: 24px;
-            color: #cbd5e0;
-        }
-
-        .step-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .step-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .step-desc {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                order: 2;
-            }
-        }
-
-        .code-block {
-            background: #1a202c;
-            color: #68d391;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
+        .benefit-card p {
+            color: #666;
             line-height: 1.6;
         }
 
+        /* Code Example */
+        .code-section {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
         .code-comment {
-            color: #718096;
+            color: #6272a4;
         }
 
         .code-keyword {
-            color: #f687b3;
+            color: #ff79c6;
         }
 
         .code-string {
-            color: #fbd38d;
+            color: #f1fa8c;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--adp-dark-gray);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            background: white;
+            color: var(--adp-red);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">ADP</div>
-                <div>
-                    <h1>ADP OneKnowledge</h1>
-                    <p class="tagline">AI-Powered Knowledge Assistant with Multi-System API Integration</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="adp-logo">ADP</div>
+                <div class="nav-title">OneKnowledge AI System</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#demo">Live Demo</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#api">API Integration</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>ADP OneKnowledge</h1>
+        <p>Unified AI-Powered Knowledge Assistant with Multi-System API Integration for NAS, Payroll, and Implementation Teams</p>
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Connected Systems</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5,470</div>
+                <div class="stat-label">Knowledge Articles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">75%</div>
+                <div class="stat-label">Time Saved</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">&lt;3s</div>
+                <div class="stat-label">Response Time</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Architecture -->
+    <section id="architecture" class="container">
+        <div class="section-header">
+            <h2>System Architecture</h2>
+            <p>Built on cutting-edge AI technology with seamless API integration across all ADP knowledge systems</p>
+        </div>
+
+        <div class="architecture-grid">
+            <div class="arch-card">
+                <div class="arch-icon">🔌</div>
+                <h3>API Integration Layer</h3>
+                <p>RESTful API connectors to SharePoint, Confluence, ServiceNow, Jira, and internal wikis with OAuth 2.0 authentication and real-time synchronization.</p>
+            </div>
+
+            <div class="arch-card">
+                <div class="arch-icon">🧠</div>
+                <h3>AI Processing Engine</h3>
+                <p>GPT-4 powered natural language understanding with RAG (Retrieval Augmented Generation) for accurate, source-grounded responses.</p>
+            </div>
+
+            <div class="arch-card">
+                <div class="arch-icon">🔍</div>
+                <h3>Vector Search Database</h3>
+                <p>Semantic search across 5,470+ documents using embeddings and similarity matching for instant, relevant results.</p>
+            </div>
+
+            <div class="arch-card">
+                <div class="arch-icon">🔐</div>
+                <h3>Security & Permissions</h3>
+                <p>Role-based access control inheriting permissions from source systems with full audit logging and compliance.</p>
+            </div>
+
+            <div class="arch-card">
+                <div class="arch-icon">📊</div>
+                <h3>Analytics Dashboard</h3>
+                <p>Real-time insights on usage patterns, knowledge gaps, content quality, and user satisfaction metrics.</p>
+            </div>
+
+            <div class="arch-card">
+                <div class="arch-icon">⚡</div>
+                <h3>Real-Time Sync</h3>
+                <p>Webhook-based updates ensure knowledge base is always current with zero manual intervention required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Sources Visualization -->
+    <section id="api" class="container">
+        <div class="section-header">
+            <h2>Connected Knowledge Sources</h2>
+            <p>Real-time API integration with all major ADP knowledge repositories</p>
+        </div>
+
+        <div class="api-visual">
+            <div class="api-diagram">
+                <div class="api-source-box">
+                    <div class="source-logo">📘</div>
+                    <div class="source-name">SharePoint</div>
+                    <div class="source-count">1,247 NAS Docs</div>
+                </div>
+
+                <div class="api-source-box">
+                    <div class="source-logo">📗</div>
+                    <div class="source-name">Confluence</div>
+                    <div class="source-count">892 Guides</div>
+                </div>
+
+                <div class="central-ai">
+                    <div class="central-ai-icon">🤖</div>
+                    <h3>AI Engine</h3>
+                    <p>Unified Knowledge Assistant</p>
+                </div>
+
+                <div class="api-source-box">
+                    <div class="source-logo">📙</div>
+                    <div class="source-name">ServiceNow</div>
+                    <div class="source-count">2,341 Articles</div>
+                </div>
+
+                <div class="api-source-box">
+                    <div class="source-logo">📕</div>
+                    <div class="source-name">Jira Wiki</div>
+                    <div class="source-count">567 Pages</div>
+                </div>
+
+                <div class="api-source-box">
+                    <div class="source-logo">📓</div>
+                    <div class="source-name">Internal Wiki</div>
+                    <div class="source-count">423 SOPs</div>
+                </div>
+            </div>
+
+            <div class="code-section">
+<span class="code-comment">// API Integration Example - Multi-Source Query</span>
+
+<span class="code-keyword">const</span> knowledgeSources = {
+  sharepoint: { 
+    endpoint: <span class="code-string">'https://api.adp.com/v1/sharepoint'</span>,
+    auth: <span class="code-string">'OAuth2.0'</span>,
+    docs: <span class="code-string">1247</span>
+  },
+  confluence: { 
+    endpoint: <span class="code-string">'https://api.adp.com/v1/confluence'</span>,
+    auth: <span class="code-string">'OAuth2.0'</span>,
+    docs: <span class="code-string">892</span>
+  },
+  servicenow: { 
+    endpoint: <span class="code-string">'https://api.adp.com/v1/servicenow'</span>,
+    auth: <span class="code-string">'OAuth2.0'</span>,
+    docs: <span class="code-string">2341</span>
+  }
+};
+
+<span class="code-keyword">async function</span> <span class="code-function">queryKnowledge</span>(userQuestion) {
+  <span class="code-comment">// Step 1: Convert question to embedding vector</span>
+  <span class="code-keyword">const</span> embedding = <span class="code-keyword">await</span> <span class="code-function">generateEmbedding</span>(userQuestion);
+  
+  <span class="code-comment">// Step 2: Search across all connected systems via API</span>
+  <span class="code-keyword">const</span> results = <span class="code-keyword">await</span> Promise.all([
+    <span class="code-function">searchAPI</span>(knowledgeSources.sharepoint, embedding),
+    <span class="code-function">searchAPI</span>(knowledgeSources.confluence, embedding),
+    <span class="code-function">searchAPI</span>(knowledgeSources.servicenow, embedding)
+  ]);
+  
+  <span class="code-comment">// Step 3: Rank and synthesize results</span>
+  <span class="code-keyword">const</span> topResults = <span class="code-function">rankBySimilarity</span>(results);
+  
+  <span class="code-comment">// Step 4: Generate AI response with source citations</span>
+  <span class="code-keyword">const</span> answer = <span class="code-keyword">await</span> <span class="code-function">generateResponse</span>(topResults, userQuestion);
+  
+  <span class="code-keyword">return</span> {
+    answer: answer.text,
+    sources: answer.citations,
+    confidence: answer.score
+  };
+}
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Real-Time Data Flow</h2>
+            <p>How your query travels through the system in under 3 seconds</p>
+        </div>
+
+        <div class="flow-container">
+            <div class="flow-steps">
+                <div class="flow-step active">
+                    <div class="flow-step-circle">💬</div>
+                    <div class="flow-step-title">User Query</div>
+                    <div class="flow-step-desc">Natural language question</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="flow-step">
+                    <div class="flow-step-circle">🧠</div>
+                    <div class="flow-step-title">AI Processing</div>
+                    <div class="flow-step-desc">Intent extraction</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="flow-step">
+                    <div class="flow-step-circle">🔌</div>
+                    <div class="flow-step-title">API Calls</div>
+                    <div class="flow-step-desc">Query all systems</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="flow-step">
+                    <div class="flow-step-circle">🔍</div>
+                    <div class="flow-step-title">Vector Search</div>
+                    <div class="flow-step-desc">Semantic matching</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="flow-step">
+                    <div class="flow-step-circle">✨</div>
+                    <div class="flow-step-title">AI Response</div>
+                    <div class="flow-step-desc">Answer + sources</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="main-content">
-            <div class="sidebar">
-                <h3>🔌 Connected API Sources</h3>
-                <div class="api-source active" data-source="sharepoint">
-                    <div class="source-name">
-                        <span class="status-dot"></span>
-                        SharePoint Online
+    <!-- Interactive Demo -->
+    <section id="demo" class="container">
+        <div class="section-header">
+            <h2>Live Interactive Demo</h2>
+            <p>Experience the power of unified knowledge access</p>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-container">
+                <div class="demo-sidebar">
+                    <h4>🔌 Active API Sources</h4>
+                    
+                    <div class="source-item">
+                        <div class="source-item-name">
+                            <span class="status-indicator"></span>
+                            SharePoint Online
+                        </div>
+                        <div class="source-item-info">NAS Documentation • 1,247 docs</div>
                     </div>
-                    <div class="source-status">NAS Documentation • 1,247 docs</div>
-                </div>
-                <div class="api-source" data-source="confluence">
-                    <div class="source-name">
-                        <span class="status-dot"></span>
-                        Confluence
+
+                    <div class="source-item">
+                        <div class="source-item-name">
+                            <span class="status-indicator"></span>
+                            Confluence
+                        </div>
+                        <div class="source-item-info">Implementation • 892 pages</div>
                     </div>
-                    <div class="source-status">Implementation Guides • 892 pages</div>
-                </div>
-                <div class="api-source" data-source="servicenow">
-                    <div class="source-name">
-                        <span class="status-dot"></span>
-                        ServiceNow KB
+
+                    <div class="source-item">
+                        <div class="source-item-name">
+                            <span class="status-indicator"></span>
+                            ServiceNow KB
+                        </div>
+                        <div class="source-item-info">Support • 2,341 articles</div>
                     </div>
-                    <div class="source-status">Support Articles • 2,341 articles</div>
-                </div>
-                <div class="api-source" data-source="jira">
-                    <div class="source-name">
-                        <span class="status-dot"></span>
-                        Jira Wiki
+
+                    <div class="source-item">
+                        <div class="source-item-name">
+                            <span class="status-indicator"></span>
+                            Jira Wiki
+                        </div>
+                        <div class="source-item-info">Projects • 567 pages</div>
                     </div>
-                    <div class="source-status">Project Docs • 567 pages</div>
-                </div>
-                <div class="api-source" data-source="internal">
-                    <div class="source-name">
-                        <span class="status-dot"></span>
-                        Internal Wiki
+
+                    <div class="source-item">
+                        <div class="source-item-name">
+                            <span class="status-indicator"></span>
+                            Internal Wiki
+                        </div>
+                        <div class="source-item-info">Payroll SOPs • 423 docs</div>
                     </div>
-                    <div class="source-status">Payroll SOPs • 423 docs</div>
                 </div>
 
-                <div class="code-block">
-<span class="code-comment">// API Integration Example</span>
-<span class="code-keyword">const</span> sources = {
-  sharepoint: <span class="code-string">'api/v1/sharepoint'</span>,
-  confluence: <span class="code-string">'api/v1/confluence'</span>,
-  servicenow: <span class="code-string">'api/v1/snow'</span>
-};
-
-<span class="code-keyword">async function</span> query(text) {
-  <span class="code-keyword">const</span> results = <span class="code-keyword">await</span> 
-    vectorSearch(text);
-  <span class="code-keyword">return</span> synthesize(results);
-}
-                </div>
-            </div>
-
-            <div>
-                <div class="chat-container">
+                <div class="chat-interface">
                     <div class="chat-header">
-                        <div class="chat-title">💬 Ask OneKnowledge</div>
-                        <div class="api-indicator">
-                            <span class="status-dot"></span>
+                        <h3>💬 ADP OneKnowledge Assistant</h3>
+                        <div class="chat-status">
+                            <span class="status-indicator"></span>
                             5 Systems Connected
                         </div>
                     </div>
 
                     <div class="chat-messages" id="chatMessages">
                         <div class="message assistant">
-                            <div class="message-content">
-                                👋 Hello! I'm your ADP OneKnowledge assistant. I have access to all your knowledge bases across SharePoint, Confluence, ServiceNow, Jira, and Internal Wiki.
+                            <div class="message-bubble">
+                                👋 Hello! I'm your ADP OneKnowledge assistant. I have real-time access to all your knowledge bases across SharePoint, Confluence, ServiceNow, Jira, and Internal Wiki.
                                 <br><br>
                                 Ask me anything about NAS, Payroll, or Implementation processes!
                             </div>
                         </div>
 
                         <div class="message user">
-                            <div class="message-content">
+                            <div class="message-bubble">
                                 How do I process a payroll adjustment for a terminated employee?
                             </div>
                         </div>
 
                         <div class="message assistant">
-                            <div class="message-content">
-                                Based on the latest documentation, here's the process for payroll adjustments for terminated employees:
+                            <div class="message-bubble">
+                                Based on the latest documentation from multiple sources, here's the complete process:
                                 <br><br>
-                                <strong>Step 1:</strong> Access the Payroll Adjustment module in ADP Workforce Now
+                                <strong>Step 1:</strong> Access Payroll Adjustment module in ADP Workforce Now
                                 <br>
-                                <strong>Step 2:</strong> Verify the termination date and final pay period
+                                <strong>Step 2:</strong> Verify termination date and final pay period
                                 <br>
                                 <strong>Step 3:</strong> Enter adjustment details (reason code: TERM-ADJ)
                                 <br>
-                                <strong>Step 4:</strong> Submit for approval through the standard workflow
+                                <strong>Step 4:</strong> Submit for approval through standard workflow
                                 <br>
                                 <strong>Step 5:</strong> Process within 2 business days of termination
                                 <br><br>
-                                <strong>⚠️ Important:</strong> Ensure all benefits deductions are calculated correctly for the final pay period.
+                                <strong>⚠️ Important:</strong> Ensure all benefits deductions are calculated correctly.
                                 <br><br>
-                                <span class="source-tag">📄 Internal Wiki - Payroll SOPs</span>
-                                <span class="source-tag">📄 ServiceNow KB-2341</span>
+                                <span class="message-source">📄 Internal Wiki - Payroll SOPs</span>
+                                <span class="message-source">📄 ServiceNow KB-2341</span>
+                                <span class="message-source">📄 SharePoint - HR Policies</span>
                             </div>
                         </div>
 
                         <div class="message user">
-                            <div class="message-content">
+                            <div class="message-bubble">
                                 What's the SLA for NAS implementation projects?
                             </div>
                         </div>
 
                         <div class="message assistant">
-                            <div class="message-content">
-                                According to the NAS Implementation Guide, the standard SLAs are:
+                            <div class="message-bubble">
+                                According to the NAS Implementation Guide, standard SLAs are:
                                 <br><br>
-                                <strong>Small Projects (< 100 employees):</strong>
+                                <strong>Small Projects (&lt; 100 employees):</strong>
                                 <br>• Discovery: 5 business days
                                 <br>• Configuration: 10 business days
                                 <br>• Testing: 5 business days
-                                <br>• Go-Live: 20 business days total
+                                <br>• Total: 20 business days
                                 <br><br>
                                 <strong>Medium Projects (100-500 employees):</strong>
                                 <br>• Discovery: 10 business days
                                 <br>• Configuration: 20 business days
                                 <br>• Testing: 10 business days
-                                <br>• Go-Live: 40 business days total
+                                <br>• Total: 40 business days
                                 <br><br>
                                 <strong>Large Projects (500+ employees):</strong>
-                                <br>• Custom timeline based on complexity
-                                <br>• Typically 60-90 business days
+                                <br>• Custom timeline: 60-90 business days
                                 <br><br>
-                                <span class="source-tag">📄 SharePoint - NAS Documentation</span>
-                                <span class="source-tag">📄 Confluence - Implementation Standards</span>
+                                <span class="message-source">📄 SharePoint - NAS Documentation</span>
+                                <span class="message-source">📄 Confluence - Implementation Standards</span>
+                                <span class="message-source">📄 Jira - Project Templates</span>
                             </div>
-                        </div>
-
-                        <div class="typing-indicator" id="typingIndicator">
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
                         </div>
                     </div>
 
-                    <div class="chat-input-container">
-                        <div class="input-wrapper">
+                    <div class="chat-input-area">
+                        <div class="input-group">
                             <input 
                                 type="text" 
                                 class="chat-input" 
                                 id="chatInput" 
                                 placeholder="Ask about NAS, Payroll, Implementation, or any process..."
                             >
-                            <button class="send-btn" id="sendBtn">Send</button>
+                            <button class="send-button" id="sendBtn">Send</button>
                         </div>
-                        <div class="quick-actions">
-                            <div class="quick-action" data-query="How do I configure tax settings?">💰 Tax Configuration</div>
-                            <div class="quick-action" data-query="What are the steps for client onboarding?">🚀 Client Onboarding</div>
-                            <div class="quick-action" data-query="How to troubleshoot payroll errors?">🔧 Troubleshooting</div>
-                            <div class="quick-action" data-query="Show me the latest compliance updates">📋 Compliance Updates</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="api-flow">
-                    <h3>🔄 Real-Time API Data Flow</h3>
-                    <div class="flow-diagram">
-                        <div class="flow-step active">
-                            <div class="step-icon">💬</div>
-                            <div class="step-title">User Query</div>
-                            <div class="step-desc">Natural language question</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">🧠</div>
-                            <div class="step-title">AI Processing</div>
-                            <div class="step-desc">Intent & entity extraction</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">🔌</div>
-                            <div class="step-title">API Calls</div>
-                            <div class="step-desc">Query all connected systems</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">🔍</div>
-                            <div class="step-title">Vector Search</div>
-                            <div class="step-desc">Semantic similarity matching</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">✨</div>
-                            <div class="step-title">AI Response</div>
-                            <div class="step-desc">Synthesized answer with sources</div>
+                        <div class="quick-queries">
+                            <div class="quick-query" data-query="How do I configure tax settings?">💰 Tax Configuration</div>
+                            <div class="quick-query" data-query="What are the steps for client onboarding?">🚀 Client Onboarding</div>
+                            <div class="quick-query" data-query="How to troubleshoot payroll errors?">🔧 Troubleshooting</div>
+                            <div class="quick-query" data-query="Show me compliance updates">📋 Compliance</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="container">
+        <div class="section-header">
+            <h2>Business Impact & Benefits</h2>
+            <p>Transforming how ADP teams access and leverage knowledge</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>75% Time Saved</h3>
+                <p>Reduce information search time from 2-3 hours to just 30 minutes daily per employee</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3>90% Accuracy</h3>
+                <p>AI-powered responses grounded in actual documentation with source citations</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>50% Faster Onboarding</h3>
+                <p>New hires productive in 2-3 weeks instead of 4-6 weeks with self-service learning</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>$500K+ Annual Savings</h3>
+                <p>Productivity gains, reduced training costs, and lower support overhead</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h3>Real-Time Updates</h3>
+                <p>Always current information through API synchronization with source systems</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Enterprise Security</h3>
+                <p>Role-based access control with full audit logging and compliance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">ADP</div>
+            <p style="margin-top: 15px; opacity: 0.9;">OneKnowledge - AI-Powered Knowledge Assistant</p>
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.7;">Unified access to NAS, Payroll, and Implementation knowledge across all systems</p>
+            <p style="margin-top: 20px; font-size: 13px; opacity: 0.6;">© 2024 ADP. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // Interactive elements
+        // Chat functionality
         const chatInput = document.getElementById('chatInput');
         const sendBtn = document.getElementById('sendBtn');
         const chatMessages = document.getElementById('chatMessages');
-        const typingIndicator = document.getElementById('typingIndicator');
-        const quickActions = document.querySelectorAll('.quick-action');
-        const apiSources = document.querySelectorAll('.api-source');
+        const quickQueries = document.querySelectorAll('.quick-query');
 
-        // Sample responses for demo
         const responses = {
-            default: "I've searched across all connected knowledge bases (SharePoint, Confluence, ServiceNow, Jira, and Internal Wiki) and found relevant information. This demonstrates how the API integration works in real-time to fetch data from multiple sources simultaneously.",
-            tax: "Tax configuration steps:\n\n1. Navigate to Company Settings > Tax Setup\n2. Select jurisdiction and tax year\n3. Configure federal, state, and local tax rates\n4. Set up tax exemptions and special rules\n5. Validate configuration with test payroll\n\n📄 Source: Internal Wiki - Payroll Tax Guide\n📄 Source: ServiceNow KB-1523",
-            onboarding: "Client onboarding process:\n\n1. Initial Discovery Call (Day 1-3)\n2. Requirements Gathering (Day 4-7)\n3. System Configuration (Day 8-15)\n4. Data Migration (Day 16-20)\n5. UAT Testing (Day 21-25)\n6. Training Sessions (Day 26-28)\n7. Go-Live Support (Day 29-30)\n\n📄 Source: Confluence - Implementation Playbook\n📄 Source: SharePoint - Client Success Guide",
-            troubleshoot: "Common payroll error troubleshooting:\n\n• Error Code 101: Check employee tax setup\n• Error Code 202: Verify pay period dates\n• Error Code 303: Review deduction calculations\n• Error Code 404: Confirm employee status\n\nFor detailed resolution steps, refer to the troubleshooting matrix.\n\n📄 Source: ServiceNow KB-2891\n📄 Source: Jira Wiki - Error Codes",
-            compliance: "Latest compliance updates (Q4 2024):\n\n• Federal minimum wage unchanged at $7.25\n• 15 states increased minimum wage (effective Jan 1)\n• New FLSA overtime rules for salaried employees\n• Updated W-4 form requirements\n• ACA reporting deadline: March 31, 2025\n\n📄 Source: SharePoint - Compliance Center\n📄 Source: Internal Wiki - Regulatory Updates"
+            tax: "Tax configuration steps:\n\n1. Navigate to Company Settings > Tax Setup\n2. Select jurisdiction and tax year\n3. Configure federal, state, and local tax rates\n4. Set up tax exemptions and special rules\n5. Validate configuration with test payroll\n\nSources: Internal Wiki - Payroll Tax Guide | ServiceNow KB-1523 | SharePoint - Tax Documentation",
+            onboarding: "Client onboarding process:\n\n1. Initial Discovery Call (Day 1-3)\n2. Requirements Gathering (Day 4-7)\n3. System Configuration (Day 8-15)\n4. Data Migration (Day 16-20)\n5. UAT Testing (Day 21-25)\n6. Training Sessions (Day 26-28)\n7. Go-Live Support (Day 29-30)\n\nSources: Confluence - Implementation Playbook | SharePoint - Client Success Guide | Jira - Onboarding Templates",
+            troubleshoot: "Common payroll error troubleshooting:\n\n• Error Code 101: Check employee tax setup\n• Error Code 202: Verify pay period dates\n• Error Code 303: Review deduction calculations\n• Error Code 404: Confirm employee status\n\nFor detailed resolution steps, refer to the troubleshooting matrix.\n\nSources: ServiceNow KB-2891 | Jira Wiki - Error Codes | Internal Wiki - Support Guide",
+            compliance: "Latest compliance updates (Q4 2024):\n\n• Federal minimum wage unchanged at $7.25\n• 15 states increased minimum wage (effective Jan 1)\n• New FLSA overtime rules for salaried employees\n• Updated W-4 form requirements\n• ACA reporting deadline: March 31, 2025\n\nSources: SharePoint - Compliance Center | Internal Wiki - Regulatory Updates | ServiceNow - Compliance Alerts"
         };
 
-        // Send message function
         function sendMessage(text) {
             if (!text.trim()) return;
 
-            // Add user message
             const userMsg = document.createElement('div');
             userMsg.className = 'message user';
-            userMsg.innerHTML = `<div class="message-content">${text}</div>`;
-            chatMessages.insertBefore(userMsg, typingIndicator);
+            userMsg.innerHTML = `<div class="message-bubble">${text}</div>`;
+            chatMessages.appendChild(userMsg);
 
-            // Show typing indicator
-            typingIndicator.classList.add('active');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            // Simulate API call delay
             setTimeout(() => {
-                typingIndicator.classList.remove('active');
-
-                // Determine response
-                let responseText = responses.default;
+                let responseText = "I've searched across all connected knowledge bases and found relevant information. ";
+                
                 if (text.toLowerCase().includes('tax')) responseText = responses.tax;
-                if (text.toLowerCase().includes('onboard')) responseText = responses.onboarding;
-                if (text.toLowerCase().includes('troubleshoot') || text.toLowerCase().includes('error')) responseText = responses.troubleshoot;
-                if (text.toLowerCase().includes('compliance')) responseText = responses.compliance;
+                else if (text.toLowerCase().includes('onboard')) responseText = responses.onboarding;
+                else if (text.toLowerCase().includes('troubleshoot') || text.toLowerCase().includes('error')) responseText = responses.troubleshoot;
+                else if (text.toLowerCase().includes('compliance')) responseText = responses.compliance;
 
-                // Add assistant message
+                const parts = responseText.split('Sources: ');
+                const mainText = parts[0];
+                const sources = parts[1] ? parts[1].split(' | ') : [];
+
+                let sourceTags = '';
+                sources.forEach(source => {
+                    sourceTags += `<span class="message-source">📄 ${source}</span>`;
+                });
+
                 const assistantMsg = document.createElement('div');
                 assistantMsg.className = 'message assistant';
-                assistantMsg.innerHTML = `<div class="message-content">${responseText.replace(/\n/g, '<br>')}</div>`;
-                chatMessages.insertBefore(assistantMsg, typingIndicator);
+                assistantMsg.innerHTML = `<div class="message-bubble">${mainText.replace(/\n/g, '<br>')}<br><br>${sourceTags}</div>`;
+                chatMessages.appendChild(assistantMsg);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1500);
+            }, 1000);
 
             chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Event listeners
         sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage(chatInput.value);
         });
 
-        quickActions.forEach(action => {
-            action.addEventListener('click', () => {
-                const query = action.getAttribute('data-query');
-                chatInput.value = query;
-                sendMessage(query);
-            });
-        });
-
-        apiSources.forEach(source => {
-            source.addEventListener('click', () => {
-                apiSources.forEach(s => s.classList.remove('active'));
-                source.classList.add('active');
+        quickQueries.forEach(query => {
+            query.addEventListener('click', () => {
+                const text = query.getAttribute('data-query');
+                chatInput.value = text;
+                sendMessage(text);
             });
         });
 
@@ -731,6 +1214,17 @@
             flowSteps[currentStep].classList.add('active');
             currentStep = (currentStep + 1) % flowSteps.length;
         }, 2000);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
